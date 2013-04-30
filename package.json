@@ -1,0 +1,10 @@
+{
+  "name": "ember-starterkit-server",
+  "description": "ember-starterkit-server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "~3.2.x",
+    "ejs": "~0.8.x"
+  }
+}
