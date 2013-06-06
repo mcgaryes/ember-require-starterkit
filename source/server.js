@@ -26,12 +26,14 @@ app.configure('development', function() {
 // routes
 app.get('/', function(req, res) {
 	fs.readFile("index.html", 'utf8', function(e, data) {
-		if(e) { res.send('Error loading index.html'); }
+		if (e) {
+			res.send('Error loading index.html');
+		}
 		res.send(data);
 	});
 });
 
 // start
 http.createServer(app).listen(app.get('port'), function() {
-	console.log("Express server listening on port " + app.get('port'));
+	console.log("Ember starter-kit started on http://localhost:" + app.get('port'));
 });

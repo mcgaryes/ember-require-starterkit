@@ -18,6 +18,8 @@
     "node"          : true,
 
     "predef"        : [
+        "alert",
+
         "Ember",
         
         "define",

@@ -1,2 +1,23 @@
 html, body {
   margin: 20px; }
+
+.example-screen {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  background: #444444; }
+
+.example-view {
+  padding: 20px;
+  margin: 0px; }
+  .example-view h1 {
+    color: white;
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial; }
+  .example-view p {
+    color: white;
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial; }
