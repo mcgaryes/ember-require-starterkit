@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+
+		<% css.forEach(function(style){ %>
+			<link rel="stylesheet" type="text/css" href="<%= style %>">
+		<% }) %>
+
+		<!-- Libraries -->
+		<script type="text/javascript" src="../libs/jquery.js"></script>
+		<script type="text/javascript" src="../libs/underscore.js"></script>
+		<script type="text/javascript" src="../libs/backbone.js"></script>
+		<script type="text/javascript" src="../libs/backbone.rebar.js"></script>
+		
+		<!-- You Test Specs Here -->
+		
+		<% with (scripts) { %>
+			<% [].concat(jasmine, vendor, helpers, src, specs, reporters, start).forEach(function(script){ %>
+				<script src="<%= script %>"></script>
+			<% }) %>
+		<% }; %>
+
+	</head>
+	<body></body>
+</html>
