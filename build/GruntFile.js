@@ -52,10 +52,10 @@ module.exports = function(grunt) {
                         coverage: '../tests/bin/coverage/coverage.json',
                         report: '../tests/bin/coverage',
                         thresholds: {
-                            lines: 75,
-                            statements: 75,
-                            branches: 75,
-                            functions: 90
+                            lines: 0,
+                            statements: 0,
+                            branches: 0,
+                            functions: 0
                         }
                     }
                 }
@@ -144,7 +144,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
 
     // tasks
-    grunt.registerTask("test", ["jshint", "jasmine:tests"]); //, "jasmine:coverage"]);
+    grunt.registerTask("test", ["jshint", "jasmine:tests", "jasmine:coverage"]);
     grunt.registerTask("development", ["test", "sass"]);
     grunt.registerTask("release", ["development", "requirejs", "uglify", "copy:code", "copy:version", "yuidoc"]);
 
