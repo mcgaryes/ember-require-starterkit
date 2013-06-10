@@ -61,6 +61,23 @@ module.exports = function(grunt) {
                 }
             }
         },
+        plato: {
+            all: {
+                options: {
+                    jshint: grunt.file.readJSON('../.jshintrc'),
+                    exclude: /\.min\.js$/,
+                    complexity: {
+                        logicalor: true,
+                        switchcase: true,
+                        forin: true,
+                        trycatch: true
+                    }
+                },
+                files: {
+                    '../tests/bin/reports': ['../source/app/**/*.js']
+                }
+            }
+        },
         copy: {
             code: {
                 files: {
@@ -137,14 +154,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-plato');
 
     // tasks
-    grunt.registerTask("test", ["jshint", "jasmine:tests", "jasmine:coverage"]);
+    grunt.registerTask("test", ["jshint", "jasmine:tests", "jasmine:coverage", "plato"]);
     grunt.registerTask("development", ["test", "sass"]);
     grunt.registerTask("release", ["development", "requirejs", "uglify", "copy:code", "copy:version", "yuidoc"]);
 
