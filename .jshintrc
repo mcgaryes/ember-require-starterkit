@@ -29,6 +29,8 @@
         "beforeEach",
         "afterEach",
         "it",
-        "expect"
+        "expect",
+        "xdescribe",
+        "xit"
     ]
 }

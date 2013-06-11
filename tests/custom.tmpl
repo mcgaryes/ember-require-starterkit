@@ -6,20 +6,85 @@
 			<link rel="stylesheet" type="text/css" href="<%= style %>">
 		<% }) %>
 
-		<!-- Libraries -->
-		<script type="text/javascript" src="../libs/jquery.js"></script>
-		<script type="text/javascript" src="../libs/underscore.js"></script>
-		<script type="text/javascript" src="../libs/backbone.js"></script>
-		<script type="text/javascript" src="../libs/backbone.rebar.js"></script>
-		
-		<!-- You Test Specs Here -->
-		
+		<!-- RequireJS Library -->
+		<script type="text/javascript" src="../source/assets/js/require.js"></script>
+
+		<!-- RequireJS Error -->
+		<script>
+			require.onError = function(error) {
+				var message = error.requireType + ': ';
+				if (error.requireType === 'scripterror' || error.requireType === 'notloaded' && error.requireModules) {
+					message += 'Illegal path or script error: ' + '[\'' + error.requireModules.join("', '") + '\']';
+				} else {
+					message += error.message;
+				}
+
+				throw Error(message);
+			};
+		</script>
+
+		<!-- Jasmine includes -->
 		<% with (scripts) { %>
-			<% [].concat(jasmine, vendor, helpers, src, specs, reporters, start).forEach(function(script){ %>
+			<% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
 				<script src="<%= script %>"></script>
 			<% }) %>
 		<% }; %>
 
+		<!-- RequireJS Configuration -->
+		<script type="text/javascript">
+	        require.config({
+				paths: {
+
+					// libraries
+					ember: "../source/assets/js/ember",
+					jquery: "../source/assets/js/jquery",
+					handlebars: "../source/assets/js/handlebars",
+
+					// require plugins
+					text:"../source/assets/js/text",
+					domReady:"../source/assets/js/dom-ready",
+
+					// app directories
+					controllers:"../source/app/controller",
+					models:"../source/app/model",
+					views:"../source/app/view/views",
+					components:"../source/app/view/components",
+					screens:"../source/app/view/screens"
+
+				},
+				shim: {
+					"jquery": {
+						exports: "$"
+					},
+					"ember": {
+						exports: "Ember",
+						deps: ["jquery","handlebars"],
+					},
+					"handlebars": {
+						exports: "handlebars"
+					}
+				}
+	        });
+	 	</script>
+
+	 	 <!-- RequireJS Specs -->
+	 	<script type="text/javascript">
+	        require([
+				<% scripts.src.forEach(function(script, i){ %>
+          			<% script = script.replace(/\\/g, '/') // replace all backward slashes to forward slash %>
+          			'<%= script %>' <%= i < scripts.src.length-1 ? ',' : '' %>
+        		<% }) %>
+			],function() {
+				require(['<%= [].concat(scripts.specs,scripts.reporters).join("','") %>'], function(){
+					require(['<%= scripts.start.join("','") %>'], function(){
+						// good to go! Our tests should already be running.
+					});
+		        });
+			});
+		</script>
+
 	</head>
+
 	<body></body>
+
 </html>

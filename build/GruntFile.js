@@ -39,12 +39,12 @@ module.exports = function(grunt) {
         jasmine: {
             tests: {
                 options: {
-                    specs: '../tests/specs/*.js',
-                    template: '../tests/custom.tmpl'
+                    specs: "../tests/specs/*.js",
+                    template: "../tests/custom.tmpl"
                 }
             },
             coverage: {
-                src: ['../source/app/**/*.js'],
+                src: ['../source/app/controller/*.js', '../source/app/model/*.js'],
                 options: {
                     specs: '../tests/specs/*.js',
                     template: require('grunt-template-jasmine-istanbul'),
@@ -52,10 +52,10 @@ module.exports = function(grunt) {
                         coverage: '../tests/bin/coverage/coverage.json',
                         report: '../tests/bin/coverage',
                         thresholds: {
-                            lines: 0,
-                            statements: 0,
-                            branches: 0,
-                            functions: 0
+                            lines: 10,
+                            statements: 10,
+                            branches: 10,
+                            functions: 10
                         }
                     }
                 }
@@ -161,7 +161,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-plato');
 
     // tasks
-    grunt.registerTask("test", ["jshint", "jasmine:tests", "jasmine:coverage", "plato"]);
+    grunt.registerTask("test", ["jshint", "jasmine:tests"/*, "jasmine:coverage"*/, "plato"]);
     grunt.registerTask("development", ["test", "sass"]);
     grunt.registerTask("release", ["development", "requirejs", "uglify", "copy:code", "copy:version", "yuidoc"]);
 
