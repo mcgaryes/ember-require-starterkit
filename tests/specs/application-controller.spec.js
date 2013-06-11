@@ -2,8 +2,6 @@ define(["controllers/application-controller"], function(ApplicationController) {
 
 	"use strict";
 
-	console.log("getting ready to run the application-controller spec");
-
 	describe("The application controller", function() {
 
 		beforeEach(function() {});

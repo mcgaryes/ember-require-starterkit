@@ -33,23 +33,24 @@
 		<!-- RequireJS Configuration -->
 		<script type="text/javascript">
 	        require.config({
+	        	baseUrl: "../source",
 				paths: {
 
 					// libraries
-					ember: "../source/assets/js/ember",
-					jquery: "../source/assets/js/jquery",
-					handlebars: "../source/assets/js/handlebars",
+					ember: "assets/js/ember",
+					jquery: "assets/js/jquery",
+					handlebars: "assets/js/handlebars",
 
 					// require plugins
-					text:"../source/assets/js/text",
-					domReady:"../source/assets/js/dom-ready",
+					text:"assets/js/text",
+					domReady:"assets/js/dom-ready",
 
 					// app directories
-					controllers:"../source/app/controller",
-					models:"../source/app/model",
-					views:"../source/app/view/views",
-					components:"../source/app/view/components",
-					screens:"../source/app/view/screens"
+					controllers:"app/controller",
+					models:"app/model",
+					views:"app/view/views",
+					components:"app/view/components",
+					screens:"app/view/screens"
 
 				},
 				shim: {
