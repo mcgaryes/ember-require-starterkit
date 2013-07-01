@@ -1,23 +1,59 @@
 html, body {
-  margin: 20px; }
+  margin: 0;
+  background: #f2ece9; }
 
-.example-screen {
-  padding: 0px;
-  margin: 0px;
+p {
+  font-family: Arial;
+  color: #444444; }
+
+#header {
   width: 100%;
-  height: 100%;
-  background: #444444; }
+  height: 44px;
+  background: #ed573e; }
+  #header h3 {
+    line-height: 44px;
+    padding: 0px;
+    margin: 0 0 0 15px;
+    float: left; }
+    #header h3 a {
+      font-family: Arial;
+      color: #faf4f1;
+      text-decoration: none; }
+  #header ul {
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 44px;
+    margin-right: 15px; }
+    #header ul li {
+      float: left;
+      color: #faf4f1;
+      font-family: Arial;
+      margin-right: 10px; }
+      #header ul li a {
+        color: #faf4f1;
+        padding: 5px 15px 5px 15px;
+        background: rgba(0, 0, 0, 0.15);
+        text-decoration: none; }
 
-.example-view {
+#content {
+  min-height: 200px;
+  background: #faf4f1;
   padding: 20px;
-  margin: 0px; }
-  .example-view h1 {
-    color: white;
-    padding: 0px;
-    margin: 0px;
+  overflow: hidden; }
+  #content a {
     font-family: Arial; }
-  .example-view p {
-    color: white;
+    #content a:visited {
+      color: #444444; }
+
+#footer {
+  width: 100%;
+  height: 60px;
+  background: #f2ece9; }
+  #footer p {
+    color: #444444;
     padding: 0px;
-    margin: 0px;
-    font-family: Arial; }
+    margin: 15px 0 0 15px;
+    font-family: Arial;
+    font-size: 12px; }

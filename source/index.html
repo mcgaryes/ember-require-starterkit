@@ -1,11 +1,57 @@
 <!DOCTYPE html>
 <html>
+  
   <head>
+  
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0" />
+
     <link rel="stylesheet" href="/assets/css/main.css">
+  
   </head>
+  
   <body>
-    <div id="content"></div>
-    <script data-main="/app/config" src="/assets/js/require.js"></script>
+  
+    <script type="text/x-handlebars" data-template-name="application">
+    	<div id="header">
+    		<h3>{{#linkTo "index"}}Header{{/linkTo}}</h3>
+			<ul>
+				<li>
+					{{#linkTo "foo"}}Foo{{/linkTo}}
+				</li>
+				<li>
+					{{#linkTo "bar"}}Bar{{/linkTo}}
+				</li>
+			</ul>
+    	</div>
+    	<div id="content">{{outlet}}</div>
+    	<div id="footer">
+    		<p>© Footer</p>
+    	</div>
+  	</script>
+
+  	<script type="text/x-handlebars" data-template-name="index">
+  		<p>Index</p>
+  	</script>
+
+  	<script type="text/x-handlebars" data-template-name="foo">
+  		<p>{{title}}</p>
+  	</script>
+
+  	<script type="text/x-handlebars" data-template-name="bar">
+  		<p>Bar</p>
+  		{{#linkTo "bar.a"}}Bar A{{/linkTo}}
+  		{{outlet}}
+  	</script>
+
+  	<script type="text/x-handlebars" data-template-name="bar/a">
+  		<p>This is bar a.</p>
+  		<button {{action "doSomething"}}> Do Something</button>
+  	</script>
+
+    <!-- RequireJS -->
+  	<script data-main="/app/config" src="/assets/js/require.js"></script>
+
   </body>
+
 </html>

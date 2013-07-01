@@ -1,34 +1,80 @@
 $dark:#444; 
-$light:#fff; 
+$medium:#F2ECE9;
+$light:#FAF4F1; 
+$orange:#ED573E;
+
+$headerHeight:44px;
+$footerHeight:60px;
 
 html, body {
-    margin: 20px;
+    margin: 0;
+    background: $medium; 
 }
 
-.example-screen {
-	padding:0px;
-	margin:0px;
+p {
+	font-family: Arial;
+	color:$dark;
+}
+
+#header {
 	width: 100%;
-	height: 100%;
-	background: $dark;
+	height: $headerHeight;
+	background: $orange;
+	h3 {
+		line-height: $headerHeight;
+		padding:0px;
+		margin: 0 0 0 15px;
+		float:left;
+		a{
+			font-family: Arial;
+			color:$light;
+			text-decoration: none;
+		}
+	}
+	ul {
+		float: right;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		line-height: 44px;
+		margin-right: 15px;
+		li {
+			float:left;
+			color:$light;
+			font-family: Arial;
+			margin-right:10px;
+			a {
+				color:$light;
+				padding: 5px 15px 5px 15px;
+				background:rgba(0,0,0,0.15);
+				text-decoration: none;
+			}
+		}
+	}
 }
 
-.example-view {
-	
+#content {
+	min-height: 200px;
+	background: $light;
 	padding:20px;
-	margin:0px;
-
-	h1 {
-		color:$light;
-		padding:0px;
-		margin:0px;
+	overflow:hidden;
+	a {
 		font-family: Arial;
+		&:visited {
+			color:$dark;
+		}
 	}
+}
 
+#footer {
+	width: 100%;
+	height: $footerHeight;
+	background: $medium;
 	p {
-		color:$light;
+		color:$dark;
 		padding:0px;
-		margin:0px;
+		margin: 15px 0 0 15px;
 		font-family: Arial;
+		font-size: 12px;
 	}
 }

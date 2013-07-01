@@ -39,17 +39,34 @@ require([
 
 	// build application
 	var buildApplication = function(data) {
+
+		// setup application wide models and controller
 		Application.appController = ApplicationController.create();
 		Application.appModel = ApplicationModel.create(data);
-		Application.IndexRoute = Ember.Route.extend({
-			render: function() {
-				var r = require(["screens/example-screen"], function(ExampleScreen) {
-					var as = ExampleScreen.create();
-					as.replaceIn("#content");
-				});
-				this._super();
+
+		// set up routes
+		Application.Router.map(function() {
+			this.route("foo");
+			this.resource("bar", function() {
+				this.route("a");
+			});
+		});
+
+		Application.FooRoute = Ember.Route.extend({
+			model: function() {
+				return {
+					title: "Foo"
+				};
 			}
 		});
+
+		Application.BarAController = Ember.Controller.extend({
+			doSomething: function() {
+				alert("doing something");
+			}
+		});
+
+		// now trigger the first route
 		Application.advanceReadiness();
 	};
 
