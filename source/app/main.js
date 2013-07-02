@@ -5,20 +5,21 @@
  * @module main
  */
 require([
-	"ember",
-	"handlebars",
-	"jquery",
-	"application",
-	"controller/application-controller",
-	"model/application-model"
+		"ember",
+		"emberData",
+		"handlebars",
+		"jquery",
+		"application",
+		"controller/application-controller",
+		"model/application-model"
 ], function(
 	Ember,
+	EmberData,
 	Handlebars,
 	$,
 	Application,
 	ApplicationController,
-	ApplicationModel
-) {
+	ApplicationModel) {
 
 	'use strict';
 
@@ -47,9 +48,8 @@ require([
 		// set up routes
 		Application.Router.map(function() {
 			this.route("foo");
-			this.resource("bar", function() {
-				this.route("a");
-			});
+			this.route("bar");
+			this.route("baz");
 		});
 
 		Application.FooRoute = Ember.Route.extend({
@@ -60,9 +60,17 @@ require([
 			}
 		});
 
-		Application.BarAController = Ember.Controller.extend({
-			doSomething: function() {
-				alert("doing something");
+		Application.BarRoute = Ember.Route.extend({
+			setupController: function(controller, model) {
+				require(["view/views/bar-view-controller"]);
+			}
+		});
+
+		Application.BazRoute = Ember.Route.extend({
+			setupController: function(controller, model) {
+				require(["view/views/baz-view-controller"],function(BazViewController){
+					BazViewController.create();
+				});
 			}
 		});
 

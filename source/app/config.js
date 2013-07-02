@@ -5,16 +5,17 @@ require.config({
 
 		// libraries
 		ember: "../assets/js/ember",
+		emberData: "../assets/js/ember-data",
 		jquery: "../assets/js/jquery",
 		handlebars: "../assets/js/handlebars",
 
 		// require plugins
-		text:"../assets/js/text",
+		text: "../assets/js/text",
 
 		// view directories
-		views:"view/views",
-		components:"view/components",
-		screens:"view/screens"
+		views: "view/views",
+		components: "view/components",
+		screens: "view/screens"
 
 	},
 	shim: {
@@ -23,7 +24,11 @@ require.config({
 		},
 		"ember": {
 			exports: "Ember",
-			deps: ["jquery","handlebars"],
+			deps: ["jquery", "handlebars"],
+		},
+		"emberData": {
+			exports: "DS",
+			deps: ["ember"],
 		},
 		"handlebars": {
 			exports: "handlebars"
