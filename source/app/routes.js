@@ -19,10 +19,15 @@ define([
 	 */
 	var ApplicationRoutes = {
 
+		/**
+		 * Kicks off the creation of routes. This is mainly here so that you can control
+		 * when the routes are actually created in the application startup sequence.
+		 * @method create
+		 */
 		create: function() {
 
 			Application.Router.map(function() {
-				// define route maps here
+				// define routes here
 			});
 		}
 	};

@@ -85,7 +85,9 @@ module.exports = function(grunt) {
                     "../www/index.html": "../source/index.html",
                     "../www/assets/css/main.css": "../source/assets/css/main.css",
                     "../www/assets/data/bootstrap.json": "../source/assets/data/bootstrap.json",
-                    "../www/assets/img/": "../source/assets/img/**"
+                    "../www/assets/img/": "../source/assets/img/**",
+                    "../www/package.json": "../source/package.json",
+                    "../www/server.js": "../source/server.js"
                 }
             },
             version: {
@@ -161,7 +163,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-plato');
 
     // tasks
-    grunt.registerTask("test", ["jshint", "jasmine:tests"/*, "jasmine:coverage"*/, "plato"]);
+    grunt.registerTask("test", ["jshint", "jasmine:tests" /*, "jasmine:coverage"*/ , "plato"]);
     grunt.registerTask("development", ["test", "sass"]);
     grunt.registerTask("release", ["development", "requirejs", "uglify", "copy:code", "copy:version", "yuidoc"]);
 
