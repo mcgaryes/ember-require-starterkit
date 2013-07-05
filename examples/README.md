@@ -1,1 +1,0 @@
-There are a number of examples that provide some direction in how to start using the starterkit. Please let me know if there is anything that you dont see that you are wanting to and ill add it.

@@ -1,6 +1,6 @@
 ### Overview
 
-This starterkit aims to provide a simple starterkit for EmberJS applications. The layout is intentially left bare, with only three out of the box block level elements: `header`, `content` and `footer`. You can have a look at the examples to get a good idea of how to start implementing. The following is a list of functionality included:
+This starterkit aims to provide a simple starterkit for EmberJS applications. The layout is intentially left bare, with only three out of the box block level elements: `header`, `content` and `footer`. The following is a list of functionality included:
 
 1. Directory Structure
 	* The starterkit provides a base directory structure in which you should follow. Of course this will vary depending on the type of application that you are developing.
