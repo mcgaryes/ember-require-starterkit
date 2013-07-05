@@ -5,21 +5,24 @@
  * @module main
  */
 require([
-		"ember",
-		"emberData",
-		"handlebars",
-		"jquery",
-		"application",
-		"controller/application-controller",
-		"model/application-model"
+	"ember",
+	"emberData",
+	"handlebars",
+	"jquery",
+	"application",
+	"routes",
+	"controller/application-controller",
+	"model/application-model"
 ], function(
 	Ember,
 	EmberData,
 	Handlebars,
 	$,
 	Application,
+	ApplicationRoutes,
 	ApplicationController,
-	ApplicationModel) {
+	ApplicationModel
+) {
 
 	'use strict';
 
@@ -40,45 +43,13 @@ require([
 
 	// build application
 	var buildApplication = function(data) {
-
-		// setup application wide models and controller
 		Application.appController = ApplicationController.create();
 		Application.appModel = ApplicationModel.create(data);
-
-		// set up routes
-		Application.Router.map(function() {
-			this.route("foo");
-			this.route("bar");
-			this.route("baz");
-		});
-
-		Application.FooRoute = Ember.Route.extend({
-			model: function() {
-				return {
-					title: "Foo"
-				};
-			}
-		});
-
-		Application.BarRoute = Ember.Route.extend({
-			setupController: function(controller, model) {
-				require(["view/views/bar-view-controller"]);
-			}
-		});
-
-		Application.BazRoute = Ember.Route.extend({
-			setupController: function(controller, model) {
-				require(["view/views/baz-view-controller"],function(BazViewController){
-					BazViewController.create();
-				});
-			}
-		});
-
-		// now trigger the first route
+		ApplicationRoutes.create();
 		Application.advanceReadiness();
 	};
 
-	// load the bootstrap data and kick-off the application
+	// kick-off the application
 	loadBootstrap();
 
 });

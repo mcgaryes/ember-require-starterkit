@@ -13,24 +13,16 @@
   <body>
   
     <script type="text/x-handlebars" data-template-name="application">
-    	<div id="header">
-    		<h3>{{#linkTo "index"}}Header{{/linkTo}}</h3>
-			<ul>
-				<li>
-					{{#linkTo "foo"}}Foo{{/linkTo}}
-				</li>
-				<li>
-					{{#linkTo "bar"}}Bar{{/linkTo}}
-				</li>
-        <li>
-          {{#linkTo "baz"}}Baz{{/linkTo}}
-        </li>
-			</ul>
-    	</div>
-    	<div id="content">{{outlet}}</div>
-    	<div id="footer">
-    		<p>© Footer</p>
-    	</div>
+        <div id="header">
+            <h3>{{#linkTo "index"}}Header{{/linkTo}}</h3>
+            <ul>
+                <li>{{#linkTo "foo"}}Foo{{/linkTo}}</li>
+                <li>{{#linkTo "bar"}}Bar{{/linkTo}}</li>
+                <li>{{#linkTo "baz"}}Baz{{/linkTo}}</li>
+            </ul>
+        </div>
+        <div id="content">{{outlet}}</div>
+        <div id="footer"><p>© Footer</p></div>
   	</script>
 
   	<script type="text/x-handlebars" data-template-name="index">
@@ -39,10 +31,12 @@
 
   	<script type="text/x-handlebars" data-template-name="foo">
   		<p>{{title}}</p>
+      <button {{action "doSomething"}}>Do Something</button>
   	</script>
 
   	<script type="text/x-handlebars" data-template-name="bar">
   		<p>Bar</p>
+      <button {{action doSomething}}>Do Something</button>
   	</script>
 
     <!-- RequireJS -->

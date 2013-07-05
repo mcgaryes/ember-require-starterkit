@@ -1,7 +1,7 @@
 define([
 	"ember",
 	"application",
-	"text!view/views/baz-view.html"
+	"text!view/views/baz-view.handlebars"
 ], function(
 	Ember,
 	Application,
@@ -10,22 +10,24 @@ define([
 
 	"use strict";
 
-	var BazView = Application.Bar = Ember.View.extend({
-		template: Ember.Handlebars.compile(BazViewTemplate),
-		templateName: 'baz'
-	});
+	//Ember.TEMPLATES.baz = Ember.Handlebars.compile(BazViewTemplate);
 
 	var BazController = Application.BazController = Ember.Controller.extend({
-		init:function(){
-			this._super();
-			var v = BazView.create();
-			v.append();
-			$("#content").html(v);
-		},
 		doSomething: function() {
 			alert("doing something");
 		}
 	});
+
+	var BazView = Application.Bar = Ember.View.extend({
+		classNames:["baz"],
+		template: Ember.Handlebars.compile(BazViewTemplate),
+		templateName: 'baz',
+		controller:BazController.create()
+	});
+
+	//return BazView.create({
+	//	templateName:"baz"
+	//});
 
 	return BazController;
 
