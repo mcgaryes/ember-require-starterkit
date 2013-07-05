@@ -26,7 +26,7 @@ Installation is pretty straightforward. If you run the following steps you shoul
 	<pre>
 	$ git clone https://github.com/mcgaryes/ember-starterkit.git
 	$ cd STARTERKIT_DIRECTORY
-	$ rm -R .git
+	$ rm -r .git
 	</pre>
 2. Install NPM module dependencies
 	<pre>
