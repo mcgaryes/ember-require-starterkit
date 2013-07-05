@@ -11,12 +11,12 @@ This starterkit aims to provide a simple starterkit for EmberJS applications. Th
 4. SASS Integration
 5. Grunt Build/Watch Scripts
 	* Run the grunt script to move specific files to a `www` directory.
-6. 
+6. JSHint implementation
 
 ### Prerequisites
 
 1. Basic knowledge of Grunt, SASS, Require, Express, YUI and Ember.
-2. Node, Grunt and NPM are installed globally on your machine.
+2. Node, NPM, Grunt and PhantomJS are installed globally on your machine.
 
 ### Installation
 
