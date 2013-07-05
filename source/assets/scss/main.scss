@@ -1,80 +1,29 @@
-$dark:#444; 
-$medium:#F2ECE9;
-$light:#FAF4F1; 
+$background:#FAF4F1; 
+$middleground:#F2ECE9;
+$foreground:#e5dbd6;
 $orange:#ED573E;
 
 $headerHeight:44px;
+$contentHeight:200px;
 $footerHeight:60px;
 
 html, body {
     margin: 0;
-    background: $medium; 
-}
-
-p {
-	font-family: Arial;
-	color:$dark;
+    background: $middleground; 
 }
 
 #header {
-	width: 100%;
 	height: $headerHeight;
 	background: $orange;
-	h3 {
-		line-height: $headerHeight;
-		padding:0px;
-		margin: 0 0 0 15px;
-		float:left;
-		a{
-			font-family: Arial;
-			color:$light;
-			text-decoration: none;
-		}
-	}
-	ul {
-		float: right;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		line-height: 44px;
-		margin-right: 15px;
-		li {
-			float:left;
-			color:$light;
-			font-family: Arial;
-			margin-right:10px;
-			a {
-				color:$light;
-				padding: 5px 15px 5px 15px;
-				background:rgba(0,0,0,0.15);
-				text-decoration: none;
-			}
-		}
-	}
 }
 
 #content {
-	min-height: 200px;
-	background: $light;
-	padding:20px;
-	overflow:hidden;
-	a {
-		font-family: Arial;
-		&:visited {
-			color:$dark;
-		}
-	}
+	min-height: $contentHeight;
+	background: $background;
 }
 
 #footer {
-	width: 100%;
 	height: $footerHeight;
-	background: $medium;
-	p {
-		color:$dark;
-		padding:0px;
-		margin: 15px 0 0 15px;
-		font-family: Arial;
-		font-size: 12px;
-	}
+	background: $middleground;
+	border-top:1px solid $foreground;
 }
