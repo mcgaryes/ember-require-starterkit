@@ -8,32 +8,15 @@ module.exports = function(grunt) {
     var VERSION = '0.1.0';
     var BANNER = '/**\n * ' + NAME + ' v' + VERSION + '\n * ' + DESCRIPTION + '\n * ' + URL + '\n */\n';
 
-    var path = require('path');
-    var uglify = {};
-    var srcpath = '../source/assets/js/';
-    var destpath = '../www/assets/js/';
-
-    grunt.file.expand({
-        cwd: srcpath
-    }, '**/*.js').forEach(function(relpath) {
-        var excludes = ["ember.js", "jquery.js", "handlebars.js"];
-        var shouldAdd = true;
-        for (var i = 0; i < excludes.length; i++) {
-            if (relpath === excludes[i]) {
-                shouldAdd = false;
-            }
-        }
-        if (shouldAdd) {
-            uglify[path.join(destpath, relpath)] = path.join(srcpath, relpath);
-        }
-    });
-
     // config
     grunt.initConfig({
         uglify: {
             options: {},
-            dist: {
-                files: uglify
+            all: {
+                files: {
+                    '../www/app/app.js': ['../www/app/app.js'],
+                    '../www/assets/js/libs.js': ['../www/assets/js/libs.js']
+                }
             }
         },
         jasmine: {
@@ -58,23 +41,6 @@ module.exports = function(grunt) {
                             functions: 10
                         }
                     }
-                }
-            }
-        },
-        plato: {
-            all: {
-                options: {
-                    jshint: grunt.file.readJSON('../.jshintrc'),
-                    exclude: /\.min\.js$/,
-                    complexity: {
-                        logicalor: true,
-                        switchcase: true,
-                        forin: true,
-                        trycatch: true
-                    }
-                },
-                files: {
-                    '../tests/bin/reports': ['../source/app/**/*.js']
                 }
             }
         },
@@ -119,20 +85,6 @@ module.exports = function(grunt) {
                 jshintrc: '../.jshintrc'
             }
         },
-        requirejs: {
-            all: {
-                options: {
-                    appDir: "../source/app",
-                    baseUrl: "./",
-                    mainConfigFile: "../source/app/config.js",
-                    locale: "en-us",
-                    dir: "../www/app",
-                    optimize: "uglify",
-                    name: "main",
-                    fileExclusionRegExp: /^\./
-                }
-            }
-        },
         sass: {
             all: {
                 files: {
@@ -141,11 +93,48 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            all: {
+            sass: {
                 files: ['../source/assets/scss/*.scss'],
                 tasks: ['sass'],
                 options: {
                     nospawn: true
+                }
+            },
+            app: {
+                files: ['../source/app/*.js', '../source/app/**/*.js'],
+                tasks: ["concat:app"],
+                options: {
+                    debounceDelay: 250
+                }
+            },
+            libs: {
+                files: ['../source/assets/js/*.js*'],
+                tasks: ["concat:libs"],
+                options: {
+                    debounceDelay: 250
+                }
+            }
+        },
+        concat: {
+            app: {
+                files: {
+                    '../www/app/app.js': [
+                        '../source/app/application.js',
+                        '../source/app/routes.js',
+                        '../source/app/model/application-model.js',
+                        '../source/app/controller/application-controller.js',
+                        '../source/app/main.js'
+                    ]
+                }
+            },
+            libs: {
+                files: {
+                    '../www/assets/js/libs.js': [
+                        "../source/assets/js/jquery.js",
+                        "../source/assets/js/handlebars.js",
+                        "../source/assets/js/ember.js",
+                        "../source/assets/js/ember-data.js"
+                    ]
                 }
             }
         }
@@ -157,14 +146,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-plato');
+    grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+
 
     // tasks
-    grunt.registerTask("test", ["jshint", "jasmine:tests" /*, "jasmine:coverage"*/ , "plato"]);
+    grunt.registerTask("test", ["jshint" /*, "jasmine:tests"*/ ]);
     grunt.registerTask("development", ["test", "sass"]);
-    grunt.registerTask("release", ["development", "requirejs", "uglify", "copy:code", "copy:version", "yuidoc"]);
+    grunt.registerTask("release", ["development", "concat", "uglify", "copy:code", "copy:version", "yuidoc"]);
 
 };

@@ -1,23 +1,15 @@
-/**
- * Contains ember routing and route functionality.
- * @module routes
- */
-define([
-	"ember",
-	"application"
-], function(
-	Ember,
-	Application
-) {
+(function(Application) {
 
 	"use strict";
+
+	var root = this;
 
 	/**
 	 * Contains methods for creating initial routes for the applicaiton.
 	 * @class ApplicationRoutes
 	 * @constructor
 	 */
-	var ApplicationRoutes = {
+	root.ApplicationRoutes = {
 
 		/**
 		 * Kicks off the creation of routes. This is mainly here so that you can control
@@ -32,6 +24,4 @@ define([
 		}
 	};
 
-	return ApplicationRoutes;
-
-});
+}).call(window, Application);

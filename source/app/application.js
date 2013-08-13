@@ -1,11 +1,8 @@
-/**
- * This module contains functionality used to create and limit access to an
- * Ember.Application singleton instance.
- * @module application
- */
-define(["ember"], function(Ember) {
+(function(Ember) {
 
-	'use strict';
+	"use strict";
+
+	var root = this;
 
 	/**
 	 * This is the Applicaiton singleton object. Its main job is to create an
@@ -37,6 +34,6 @@ define(["ember"], function(Ember) {
 		return Application.instance;
 	};
 
-	return Application.getInstance();
+	root.Application = Application.getInstance();
 
-});
+}).call(window, Ember);

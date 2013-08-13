@@ -1,10 +1,8 @@
-/**
- * Contains reference to the application controller and anyother functionality associated.
- * @module application-controller
- */
-define(["ember"], function(Ember) {
+(function(Ember) {
 
 	"use strict";
+
+	var root = this;
 
 	/**
 	 * The `ApplicationController` will be a place to store methods
@@ -15,7 +13,7 @@ define(["ember"], function(Ember) {
 	 * @constructor
 	 * @uses Ember.Evented
 	 */
-	var ApplicationController = Ember.Object.extend(Ember.Evented, {
+	root.ApplicationController = Ember.Object.extend(Ember.Evented, {
 
 		/**
 		 * Overridden init method for custom initialization.
@@ -26,6 +24,4 @@ define(["ember"], function(Ember) {
 		}
 	});
 
-	return ApplicationController;
-
-});
+}).call(window, Ember);

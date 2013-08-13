@@ -1,30 +1,12 @@
-/**
- * Contains functionality for application start-up. Includes a process for loading
- * bootstrap data needed for the applicaiton as well as creates and kicks-off the
- * Application build process.
- * @module main
- */
-require([
-	"ember",
-	"emberData",
-	"handlebars",
-	"jquery",
-	"application",
-	"routes",
-	"controller/application-controller",
-	"model/application-model"
-], function(
-	Ember,
-	EmberData,
-	Handlebars,
+(function(
 	$,
 	Application,
 	ApplicationRoutes,
-	ApplicationController,
-	ApplicationModel
+	ApplicationModel,
+	ApplicationController
 ) {
 
-	'use strict';
+	"use strict";
 
 	// load bootstrap data for applicaiton
 	var loadBootstrap = function() {
@@ -50,6 +32,8 @@ require([
 	};
 
 	// kick-off the application
-	loadBootstrap();
+	$(function() {
+		loadBootstrap();
+	});
 
-});
+}).call(window, $, Application, ApplicationRoutes, ApplicationModel, ApplicationController);
