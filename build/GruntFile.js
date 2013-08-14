@@ -2,8 +2,8 @@ module.exports = function(grunt) {
 
     'use strict';
 
-    var NAME = 'Ember Starter-Kit';
-    var DESCRIPTION = 'Ember Starter-Kit';
+    var NAME = 'Application';
+    var DESCRIPTION = 'Ember application.';
     var URL = 'https://www.yourdomainhere.com/';
     var VERSION = '0.1.0';
     var BANNER = '/**\n * ' + NAME + ' v' + VERSION + '\n * ' + DESCRIPTION + '\n * ' + URL + '\n */\n';
@@ -14,34 +14,19 @@ module.exports = function(grunt) {
             options: {},
             all: {
                 files: {
-                    '../www/app/app.js': ['../www/app/app.js'],
+                    '../www/app/main.js': ['../www/app/main.js'],
                     '../www/assets/js/libs.js': ['../www/assets/js/libs.js']
                 }
             }
         },
         jasmine: {
-            tests: {
+            all: {
                 options: {
                     specs: "../tests/specs/*.js",
+                    helpers: '../tests/*.helper.js',
                     template: "../tests/custom.tmpl"
-                }
-            },
-            coverage: {
-                src: ['../source/app/controller/*.js', '../source/app/model/*.js'],
-                options: {
-                    specs: '../tests/specs/*.js',
-                    template: require('grunt-template-jasmine-istanbul'),
-                    templateOptions: {
-                        coverage: '../tests/bin/coverage/coverage.json',
-                        report: '../tests/bin/coverage',
-                        thresholds: {
-                            lines: 10,
-                            statements: 10,
-                            branches: 10,
-                            functions: 10
-                        }
-                    }
-                }
+                },
+                src: []
             }
         },
         copy: {
@@ -95,7 +80,7 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: ['../source/assets/scss/*.scss'],
-                tasks: ['sass'],
+                tasks: ['sass',"copy:code"],
                 options: {
                     nospawn: true
                 }
@@ -103,6 +88,13 @@ module.exports = function(grunt) {
             app: {
                 files: ['../source/app/*.js', '../source/app/**/*.js'],
                 tasks: ["concat:app"],
+                options: {
+                    debounceDelay: 250
+                }
+            },
+            copy: {
+                files: ['../source/index.html'],
+                tasks: ["copy:code"],
                 options: {
                     debounceDelay: 250
                 }
@@ -118,23 +110,30 @@ module.exports = function(grunt) {
         concat: {
             app: {
                 files: {
-                    '../www/app/app.js': [
-                        '../source/app/application.js',
-                        '../source/app/routes.js',
-                        '../source/app/model/application-model.js',
-                        '../source/app/controller/application-controller.js',
-                        '../source/app/main.js'
+                    '../www/app/main.js': [
+                        '../source/app/main.js',
+                        '../source/app/controllers/*.js',
+                        '../source/app/views/*.js'
                     ]
                 }
             },
             libs: {
                 files: {
                     '../www/assets/js/libs.js': [
-                        "../source/assets/js/jquery.js",
-                        "../source/assets/js/handlebars.js",
-                        "../source/assets/js/ember.js",
-                        "../source/assets/js/ember-data.js"
+                        "../source/assets/js/jquery-1.9.1.js",
+                        "../source/assets/js/handlebars-1.0.0.js",
+                        "../source/assets/js/ember-1.0.0-rc.7.js"
                     ]
+                }
+            }
+        },
+        handlebars: {
+            compile: {
+                options: {
+                    namespace: "Ember.TEMPLATES"
+                },
+                files: {
+                    "../www/app/templates.js": ["../source/app/views/*.hbs"]
                 }
             }
         }
@@ -150,11 +149,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-concat');
-
+    grunt.loadNpmTasks('grunt-contrib-handlebars');
 
     // tasks
-    grunt.registerTask("test", ["jshint" /*, "jasmine:tests"*/ ]);
-    grunt.registerTask("development", ["test", "sass"]);
+    grunt.registerTask("test", ["jshint", "jasmine"]);
+    grunt.registerTask("development", [/*"test",*/ "sass"]);
     grunt.registerTask("release", ["development", "concat", "uglify", "copy:code", "copy:version", "yuidoc"]);
 
 };

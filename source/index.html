@@ -11,23 +11,15 @@
   
   <body>
   
-    <!-- Handlebars Templates -->
-    <div>
-
-        <!-- Application Template -->
-        <script type="text/x-handlebars" data-template-name="application">
-            <div id="header"></div>
-            <div id="content">{{outlet}}</div>
-            <div id="footer"></div>
-      	</script>
-
-        <!-- Index Template -->
-      	<script type="text/x-handlebars" data-template-name="index"></script>
-
-    </div>
-
-    <script src="/assets/js/libs.js"></script>
-    <script src="/app/app.js"></script>
+    <script type="text/x-handlebars" data-template-name="application">
+        <div id="header"></div>
+        <div id="content">{{outlet}}</div>
+        <div id="footer"></div>
+    </script>
+    
+    <script type="text/javascript" src="/assets/js/libs.js"></script>
+    <script type="text/javascript" src="/app/main.js"></script>
+    <script type="text/javascript" src="/app/templates.js"></script>
 
   </body>
 

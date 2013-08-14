@@ -10,6 +10,7 @@ $footerHeight:60px;
 html, body {
     margin: 0;
     background: $middleground; 
+    font-family: sans-serif;
 }
 
 #header {
@@ -20,10 +21,16 @@ html, body {
 #content {
 	min-height: $contentHeight;
 	background: $background;
+	padding:20px;
 }
 
 #footer {
 	height: $footerHeight;
 	background: $middleground;
 	border-top:1px solid $foreground;
+}
+
+p {
+	margin:0;
+	padding:0;
 }

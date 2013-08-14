@@ -1,6 +1,7 @@
 html, body {
   margin: 0;
-  background: #f2ece9; }
+  background: #f2ece9;
+  font-family: sans-serif; }
 
 #header {
   height: 44px;
@@ -8,9 +9,14 @@ html, body {
 
 #content {
   min-height: 200px;
-  background: #faf4f1; }
+  background: #faf4f1;
+  padding: 20px; }
 
 #footer {
   height: 60px;
   background: #f2ece9;
   border-top: 1px solid #e5dbd6; }
+
+p {
+  margin: 0;
+  padding: 0; }

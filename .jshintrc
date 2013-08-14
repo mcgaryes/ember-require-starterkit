@@ -14,13 +14,11 @@
 
     "browser"       : true,
     "jquery"        : true,
-    "yui"           : true,
     "node"          : true,
 
     "predef"        : [
+        
         "alert",
-
-        "Ember",
         
         "define",
         "require",
@@ -33,9 +31,7 @@
         "xdescribe",
         "xit",
 
-        "Application",
-        "ApplicationRoutes",
-        "ApplicationController",
-        "ApplicationModel"
+        "Ember",
+        "Application"
     ]
 }
