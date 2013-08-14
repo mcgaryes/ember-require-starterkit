@@ -4,10 +4,6 @@ This starterkit aims to provide a simple starterkit for EmberJS applications. Th
 
 1. Directory Structure
 	* The starterkit provides a base directory structure in which you should follow. Of course this will vary depending on the type of application that you are developing.
-2. RequireJS AMD Implementation
-	* The starterkit provides a basic jumping off point for AMD implementation. You should read up on RequireJS if you are not familiar with AMD (specifically RequireJS).
-3. Jasmine Unit Test Scaffold
-	* Unit testing is important with large scale applications. With this is mind the startkit provides a basic template that should get you started.
 4. SASS Integration
 5. Grunt Build/Watch Scripts
 	* Run the grunt script to move specific files to a `www` directory.
